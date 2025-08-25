@@ -74,7 +74,7 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         // O padrão "/**" dentro de static pega tudo, incluindo subpastas.
-        return (web) -> web.ignoring().requestMatchers("/", "/index.html", "/static/**", "/*.ico", "/*.css", "/*.js");
+        return (web) -> web.ignoring().requestMatchers("/", "/index.html", "/static/**", "/*.ico", "/*.css", "/*.js", "/*.png");
     }
 
     /**

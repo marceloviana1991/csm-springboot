@@ -31,8 +31,7 @@ public class LoginController {
 
     @GetMapping
     public ResponseEntity<TelefoneDto> buscarTelefone() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
-        Usuario usuario = usuarios.getFirst();
+        Usuario usuario = usuarioRepository.findFirstByOrderByIdDesc();
         return ResponseEntity.ok(new TelefoneDto(usuario.getTelefone()));
     }
 }
