@@ -20,6 +20,10 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
+    private String cliente;
+
+    private String telefone;
+
     private LocalDateTime data = LocalDateTime.now();
 
     private Boolean confirmado;

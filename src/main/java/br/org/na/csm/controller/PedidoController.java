@@ -2,6 +2,7 @@ package br.org.na.csm.controller;
 
 import br.org.na.csm.dto.pedido.PedidoCompraDto;
 import br.org.na.csm.dto.pedido.PedidoListagemDto;
+import br.org.na.csm.dto.pedido.PedidoVendaDto;
 import br.org.na.csm.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class PedidoController {
     @PostMapping("/vender")
     @Transactional
     public ResponseEntity<Void> efetuarPedidoDeVenda(
-            @RequestBody PedidoCompraDto requestDto
+            @RequestBody PedidoVendaDto requestDto
     ) {
         pedidoService.cadastrarPedidoDeVenda(requestDto);
         return ResponseEntity.ok().build();

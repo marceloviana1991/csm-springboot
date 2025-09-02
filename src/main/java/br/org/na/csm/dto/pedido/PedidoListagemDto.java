@@ -7,6 +7,8 @@ import java.util.List;
 
 public record PedidoListagemDto(
         Long id,
+        String cliente,
+        String telefone,
         String data,
         String tipo,
         Boolean confirmado,
@@ -15,6 +17,8 @@ public record PedidoListagemDto(
     public PedidoListagemDto(Pedido pedido, List<ItemPedido> itens) {
         this(
                 pedido.getId(),
+                pedido.getCliente(),
+                pedido.getTelefone(),
                 pedido.getData().toString(),
                 pedido.getTipo().toString(),
                 pedido.getConfirmado(),

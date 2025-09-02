@@ -3,6 +3,7 @@ package br.org.na.csm.service;
 import br.org.na.csm.dto.pedido.ItemPedidoListagemDto;
 import br.org.na.csm.dto.pedido.PedidoCompraDto;
 import br.org.na.csm.dto.pedido.PedidoListagemDto;
+import br.org.na.csm.dto.pedido.PedidoVendaDto;
 import br.org.na.csm.model.ItemPedido;
 import br.org.na.csm.model.Material;
 import br.org.na.csm.model.Pedido;
@@ -33,6 +34,8 @@ public class PedidoService {
     public void cadastrarPedidoDeCompra(PedidoCompraDto requestDto) {
         Pedido pedido = new Pedido();
         pedido.setTipo(Tipo.COMPRA);
+        pedido.setCliente("-");
+        pedido.setTelefone("-");
         pedido.setConfirmado(true);
         pedidoRepository.save(pedido);
         System.out.println(requestDto.itens());
@@ -49,9 +52,11 @@ public class PedidoService {
     }
 
     @Transactional
-    public void cadastrarPedidoDeVenda(PedidoCompraDto requestDto) {
+    public void cadastrarPedidoDeVenda(PedidoVendaDto requestDto) {
         Pedido pedido = new Pedido();
         pedido.setTipo(Tipo.VENDA);
+        pedido.setCliente(requestDto.cliente());
+        pedido.setTelefone(requestDto.telefone());
         pedido.setConfirmado(false);
         pedidoRepository.save(pedido);
         System.out.println(requestDto.itens());
