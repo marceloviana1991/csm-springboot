@@ -10,7 +10,6 @@ public record PedidoListagemDto(
         String cliente,
         String telefone,
         String data,
-        String tipo,
         Boolean confirmado,
         List<ItemPedidoListagemDto> itens
 ) {
@@ -20,7 +19,6 @@ public record PedidoListagemDto(
                 pedido.getCliente(),
                 pedido.getTelefone(),
                 pedido.getData().toString(),
-                pedido.getTipo().toString(),
                 pedido.getConfirmado(),
                 itens.stream().map(ItemPedidoListagemDto::new).toList()
         );

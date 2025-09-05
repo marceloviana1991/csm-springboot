@@ -1,6 +1,5 @@
 package br.org.na.csm.controller;
 
-import br.org.na.csm.dto.pedido.PedidoCompraDto;
 import br.org.na.csm.dto.pedido.PedidoListagemDto;
 import br.org.na.csm.dto.pedido.PedidoVendaDto;
 import br.org.na.csm.service.PedidoService;
@@ -18,16 +17,7 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-    @PostMapping("/comprar")
-    @Transactional
-    public ResponseEntity<Void> efetuarPedidoDeCompra(
-            @RequestBody PedidoCompraDto requestDto
-            ) {
-        pedidoService.cadastrarPedidoDeCompra(requestDto);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/vender")
+    @PostMapping
     @Transactional
     public ResponseEntity<Void> efetuarPedidoDeVenda(
             @RequestBody PedidoVendaDto requestDto
@@ -44,7 +34,7 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.buscarPorMes(mes, ano));
     }
 
-    @GetMapping("/confirmar/{id}")
+    @PatchMapping("/confirmar/{id}")
     @Transactional
     public ResponseEntity<Void> confirmarPagamento (
             @PathVariable Long id
@@ -53,7 +43,7 @@ public class PedidoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/cancelar/{id}")
+    @DeleteMapping("/cancelar/{id}")
     @Transactional
     public ResponseEntity<Void> cancelarPedido (
             @PathVariable Long id

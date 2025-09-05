@@ -54,17 +54,16 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST,
                                 "/login",
-                                "/pedidos/vender"
+                                "/pedidos"
                         ).permitAll()
                         .requestMatchers(
                                 "/",
                                 "/index.html",
                                 "/cadastrar",
                                 "/editar",
-                                "/comprar",
-                                "/vender",
-                                "/listar",
-                                "/logar",
+                                "/efetuar-pedido",
+                                "/confirmar-pedido",
+                                "/login",
                                 "/*.js",
                                 "/*.css",
                                 "/*.ico",

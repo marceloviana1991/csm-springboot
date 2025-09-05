@@ -10,10 +10,9 @@ public class SpaRedirectController {
             "/",
             "/cadastrar",
             "/editar",
-            "/comprar",
-            "/vender",
-            "/listar",
-            "/logar"
+            "/efetuar-pedido",
+            "/confirmar-pedido",
+            "/login"
     })
     public String redirect() {
         return "forward:/index.html";

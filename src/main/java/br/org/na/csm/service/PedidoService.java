@@ -1,13 +1,10 @@
 package br.org.na.csm.service;
 
-import br.org.na.csm.dto.pedido.ItemPedidoListagemDto;
-import br.org.na.csm.dto.pedido.PedidoCompraDto;
 import br.org.na.csm.dto.pedido.PedidoListagemDto;
 import br.org.na.csm.dto.pedido.PedidoVendaDto;
 import br.org.na.csm.model.ItemPedido;
 import br.org.na.csm.model.Material;
 import br.org.na.csm.model.Pedido;
-import br.org.na.csm.model.Tipo;
 import br.org.na.csm.repository.ItemPedidoRepositoy;
 import br.org.na.csm.repository.MaterialRepository;
 import br.org.na.csm.repository.PedidoRepository;
@@ -31,30 +28,8 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
 
     @Transactional
-    public void cadastrarPedidoDeCompra(PedidoCompraDto requestDto) {
-        Pedido pedido = new Pedido();
-        pedido.setTipo(Tipo.COMPRA);
-        pedido.setCliente("-");
-        pedido.setTelefone("-");
-        pedido.setConfirmado(true);
-        pedidoRepository.save(pedido);
-        System.out.println(requestDto.itens());
-        requestDto.itens().forEach( itemPedidoDto -> {
-            ItemPedido itemPedido = new ItemPedido();
-            Material material = materialRepository.getReferenceById(itemPedidoDto.materialId());
-            material.setQuantidadeEmEstoque(material.getQuantidadeEmEstoque() + itemPedidoDto.quantidade());
-            itemPedido.setMaterial(material);
-            itemPedido.setQuantidade(itemPedidoDto.quantidade());
-            itemPedido.setValorTotal(itemPedidoDto.valorTotal());
-            itemPedido.setPedido(pedido);
-            itemPedidoRepositoy.save(itemPedido);
-        });
-    }
-
-    @Transactional
     public void cadastrarPedidoDeVenda(PedidoVendaDto requestDto) {
         Pedido pedido = new Pedido();
-        pedido.setTipo(Tipo.VENDA);
         pedido.setCliente(requestDto.cliente());
         pedido.setTelefone(requestDto.telefone());
         pedido.setConfirmado(false);
@@ -66,7 +41,7 @@ public class PedidoService {
             material.setQuantidadeEmEstoque(material.getQuantidadeEmEstoque() - itemPedidoDto.quantidade());
             itemPedido.setMaterial(material);
             itemPedido.setQuantidade(itemPedidoDto.quantidade());
-            itemPedido.setValorTotal(itemPedidoDto.valorTotal());
+            itemPedido.setValorTotal((itemPedidoDto.quantidade()*material.getPreco()*1.1F));
             itemPedido.setPedido(pedido);
             itemPedidoRepositoy.save(itemPedido);
         });

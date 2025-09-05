@@ -17,9 +17,6 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Tipo tipo;
-
     private String cliente;
 
     private String telefone;
