@@ -12,7 +12,7 @@ public class SpaRedirectController {
             "/editar",
             "/efetuar-pedido",
             "/confirmar-pedido",
-            "/login"
+            "/logar"
     })
     public String redirect() {
         return "forward:/index.html";

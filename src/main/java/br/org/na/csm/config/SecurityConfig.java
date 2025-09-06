@@ -63,7 +63,7 @@ public class SecurityConfig {
                                 "/editar",
                                 "/efetuar-pedido",
                                 "/confirmar-pedido",
-                                "/login",
+                                "/logar",
                                 "/*.js",
                                 "/*.css",
                                 "/*.ico",
